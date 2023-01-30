@@ -129,7 +129,7 @@ impl Random for OsRng {}
 impl Dh25519 {
     fn derive_pubkey(&mut self) {
         // https://github.com/dalek-cryptography/x25519-dalek/blob/1c39ff92e0dfc0b24aa02d694f26f3b9539322a5/src/x25519.rs#L150
-        let point = (&ED25519_BASEPOINT_TABLE * &self.privkey).to_montgomery();
+        let point = (*&ED25519_BASEPOINT_TABLE * &self.privkey).to_montgomery();
         self.pubkey = point.to_bytes();
     }
 }
